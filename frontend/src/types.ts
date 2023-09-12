@@ -3089,6 +3089,8 @@ export type BatchExportDestinationS3 = {
         aws_secret_access_key: string
         exclude_events: string[]
         compression: string | null
+        encryption: string | null
+        kms_key_id: string | null
     }
 }
 
