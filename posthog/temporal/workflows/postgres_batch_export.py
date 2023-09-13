@@ -156,6 +156,8 @@ async def insert_into_postgres_activity(inputs: PostgresInsertInputs):
         with BatchExportTemporaryFile() as pg_file:
             with postgres_connection(inputs) as connection:
                 for result in results_iterator:
+                    # Kept for backwards compatibility, but not exported anymore.
+                    result["site_url"] = ""
                     row = {
                         key: json.dumps(result[key]) if key in json_columns and result[key] is not None else result[key]
                         for key in schema_columns
